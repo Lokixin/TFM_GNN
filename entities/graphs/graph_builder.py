@@ -10,7 +10,7 @@ from .constants import NUM_CHANNELS
 class BaseGraphBuilder(ABC):
     
     @abstractmethod
-    def __init__(self) -> None: 
+    def __init__(self, normalize_nodes=False, normalize_edges=False) -> None: 
         self.node_feature_extractor = None
         self.edge_feature_extractor = None
         
@@ -47,9 +47,10 @@ class BaseGraphBuilder(ABC):
         
             
 class RawAndPearson(BaseGraphBuilder):
-    def __init__(self) -> None:
-        self.node_feature_extractor = RawExtractor()
-        self.edge_feature_extractor = PearsonExtractor()
+    def __init__(self, normalize_nodes=False, normalize_edges=False) -> None:
+        super().__init__()
+        self.node_feature_extractor = RawExtractor(normalize=normalize_nodes)
+        self.edge_feature_extractor = PearsonExtractor(normalize=normalize_edges)
         
         
     def build(self, data, label):
@@ -57,8 +58,8 @@ class RawAndPearson(BaseGraphBuilder):
     
 
 class MomentsAndPearson(BaseGraphBuilder):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, normalize_nodes=False, normalize_edges=False) -> None:
+        super().__init__(normalize_nodes=normalize_nodes, normalize_edges=normalize_nodes)
         self.node_feature_extractor = StadisticalMomentsExtractor()
         self.edge_feature_extractor = PearsonExtractor(th=0.1)
         

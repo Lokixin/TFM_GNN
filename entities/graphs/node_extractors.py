@@ -2,6 +2,7 @@ import torch
 import numpy as np
 from abc import ABC, abstractmethod
 from scipy import stats
+from .preprocessing import normalize
 
 
 class BaseNodeExtractor(ABC):
@@ -15,11 +16,14 @@ class BaseNodeExtractor(ABC):
     
 class RawExtractor(BaseNodeExtractor):
     
-    def __init__(self) -> None:
+    def __init__(self, **kwargs) -> None:
         super().__init__()
-        
+        self.normalize = kwargs.get("normalize", False)
         
     def extract_features(self, data):
+        if self.normalize:
+            data = normalize(data)
+            
         node_features = torch.from_numpy(data)
         return node_features
     
