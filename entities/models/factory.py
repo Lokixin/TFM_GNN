@@ -1,12 +1,31 @@
+from ast import Mod
 import torch.nn as nn
 from .modelsTypes import Model
-from .models import EEGGraphConvNet
+from .models import EEGConvNetMini, EEGConvNetMiniLSTM, EEGConvNetMiniV2, EEGConvNetMiniV3, EEGGraphConvNet, EEGGraphConvNetLSTM, EEGSmall
 
 class ModelFactory:
     
     def __init__(self) -> None:
         pass
     
-    def create(self, model_id) -> nn.Module:
+    def create(self, model_id, **kwargs) -> nn.Module:
         if model_id == Model.EEGGRAPHCONVNET:
             return EEGGraphConvNet()
+        
+        if model_id == Model.EEGGRAPHCONVNETLSTM:
+            return EEGGraphConvNetLSTM(**kwargs)
+        
+        if model_id == Model.EEGSMALL:
+            return EEGSmall(**kwargs)
+        
+        if model_id == Model.EEGCONVNETMINI:
+            return EEGConvNetMini(**kwargs)
+        
+        if model_id == Model.EEGCONVNETMINIV2:
+            return EEGConvNetMiniV2(**kwargs)
+        
+        if model_id == Model.EEGCONVNETMINIV3:
+            return EEGConvNetMiniV3(**kwargs)
+        
+        if model_id == Model.EEGCONVNETMINILSTM:
+            return EEGConvNetMiniLSTM(**kwargs)

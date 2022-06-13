@@ -40,7 +40,7 @@ def main():
 
     train_data, test_data = train_test_split(indices, shuffle=True)
 
-    builder = RawAndPearson(normalize_nodes=True, normalize_edges=True)
+    builder = RawAndPearson(normalize_nodes=True, normalize_edges=True, th=0.2)
     #builder = MomentsAndPearson()
 
     train_dataset = BaseDataset(train_data, builder)
