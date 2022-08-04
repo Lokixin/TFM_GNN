@@ -42,7 +42,7 @@ class BaseGraphBuilder(ABC):
             return torch.tensor([[0, 0, 1]], dtype=torch.float64)
         
     def _format_label(self, label) -> torch.Tensor:
-        label_dict = {"AD": 0, "HC": 1, "MCI": 2}
+        label_dict = {"AD": 1, "HC": 0, "MCI": 2} # original: {"AD": 0, "HC": 1, "MCI": 2}
         return label_dict[label]
         
             

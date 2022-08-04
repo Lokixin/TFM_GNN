@@ -6,7 +6,7 @@ import scipy.io as sio
 
 from entities.graphs.data_reader import read_record
 from entities.graphs.edge_extractors import PearsonExtractor, PLIExtractor, SpectralCoherenceExtractor
-from entities.graphs.node_extractors import PSDExtractor
+from entities.graphs.node_extractors import PSDExtractor, StadisticalMomentsExtractor
 
 
 
@@ -55,9 +55,9 @@ class DatasetIterator:
 
 if __name__ == "__main__":
     PATH = "C:/Projects/TFM/dataset/AD_MCI_HC_WINDOWED"
-    NEW_PATH = "C:/Projects/TFM/dataset/AD_MCI_HC_PEARSON"
+    NEW_PATH = "C:/Projects/TFM/dataset/AD_MCI_HC_NSC"
 
-    extractors = {NEW_PATH: PearsonExtractor()}
+    extractors = {NEW_PATH: SpectralCoherenceExtractor()}
     
     for new_path, extractor in extractors.items():
         dataset_generator = DatasetIterator(PATH, new_path, extractor)

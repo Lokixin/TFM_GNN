@@ -10,4 +10,8 @@ class Model(Enum):
     EEGCONVNETMINIV2 = auto()
     EEGCONVNETMINIV3 = auto()
     EEGCONVNETMINILSTM = auto()
+    EEGCONVNETMINIV2ATTN = auto()
+    EEGGRAPHCONVNETTEMPORAL = auto()
+    MULTILEVEL = auto()
+    MAGE = auto()
     

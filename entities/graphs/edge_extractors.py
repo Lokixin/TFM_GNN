@@ -96,8 +96,8 @@ class SpectralCoherenceExtractor(BaseEdgeExtractor):
             data = normalize(data)
             
         
-        #coherence = [[np.abs(np.mean(csd(ch1, ch2, fs=256)[1])) / np.sqrt(np.mean(welch(ch1)) * np.mean(welch(ch2))) for ch2 in data] for ch1 in data]#[[ self._compute_coherence(channel1, channel2) for channel2 in data ] for channel1 in data]
-        coherence = [[np.abs(np.mean(csd(ch1, ch2, fs=256)[1]))  for ch2 in data] for ch1 in data]
+        coherence = [[np.abs(np.mean(csd(ch1, ch2, fs=256)[1])) / np.sqrt(np.mean(welch(ch1)) * np.mean(welch(ch2))) for ch2 in data] for ch1 in data]#[[ self._compute_coherence(channel1, channel2) for channel2 in data ] for channel1 in data]
+        #coherence = [[np.abs(np.mean(csd(ch1, ch2, fs=256)[1]))  for ch2 in data] for ch1 in data]
         # Set to 0 values undes a
         if self.th:
             coherence = np.where(

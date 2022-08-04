@@ -63,12 +63,12 @@ class StadisticalMomentsExtractor(BaseNodeExtractor):
         entropy = stats.differential_entropy(data, axis=1)
         skewness = stats.skew(data, axis=1)
         kurtosis = stats.kurtosis(data, axis=1)
-        features = np.array(
+        node_features = np.array(
             [
                 mean, std, variance, entropy, skewness, kurtosis
             ]
         ).T
-        node_features = torch.from_numpy(features)
+        #node_features = torch.from_numpy(features)
         return node_features
     
     
